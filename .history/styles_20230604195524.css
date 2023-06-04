@@ -1,0 +1,53 @@
+#weather-container {
+    text-align: center;
+    color: white;
+    font-family: Arial, sans-serif;
+    padding: 20px;
+}
+
+h1 {
+    font-size: 28px;
+}
+
+.input-container {
+    margin-bottom: 10px;
+}
+
+.input-container label {
+    display: inline-block;
+    width: 100px;
+    text-align: right;
+    margin-right: 10px;
+}
+
+.input-container input {
+    width: 200px;
+    padding: 5px;
+}
+
+.btn-container {
+    margin-top: 10px;
+}
+
+#date-container {
+    margin-bottom: 20px;
+}
+
+#weather-info-container {
+    display: none;
+}
+
+#weather-info {
+    font-size: 20px;
+    background-color: black;
+    color: white;
+    padding: 10px;
+    height: 300px;
+    overflow-y: scroll;
+}
+
+#map-container {
+    width: 100%;
+    height: 300px;
+    margin-top: 20px;
+}

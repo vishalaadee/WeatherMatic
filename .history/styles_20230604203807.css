@@ -1,0 +1,56 @@
+body {
+    background-image: url("background.jpg");
+    background-size: cover;
+}
+
+#weather-container {
+    text-align: center;
+    color: white;
+    font-family: Arial, sans-serif;
+    padding: 20px;
+}
+
+h1 {
+    font-size: 32px;
+    border: 2px solid #fff;
+    padding: 10px;
+    margin-bottom: 20px;
+    background-color: rgba(0, 0, 0, 0.7);
+}
+
+#error-message {
+    color: red;
+}
+
+#location-container {
+    margin-bottom: 20px;
+}
+
+#location-input {
+    padding: 10px;
+    font-size: 18px;
+    border-radius: 5px;
+}
+
+#get-forecast-btn {
+    padding: 10px 20px;
+    font-size: 18px;
+    background-color: #4CAF50;
+    border: none;
+    color: white;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+#get-forecast-btn:hover {
+    background-color: #45a049;
+}
+
+#date-container {
+    margin-bottom: 20px;
+    font-size: 20px;
+}
+
+#weather-info {
+    font-size: 20px;
+}

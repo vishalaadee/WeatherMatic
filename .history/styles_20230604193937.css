@@ -1,0 +1,39 @@
+body {
+    background-image: url("sunny_background.jpg"); /* Default background image */
+    background-size: cover;
+}
+
+#weather-container {
+    text-align: center;
+    color: white;
+    font-family: Arial, sans-serif;
+    padding: 20px;
+}
+
+h1 {
+    font-size: 28px;
+}
+
+#map-container {
+    position: relative;
+    margin-bottom: 20px;
+}
+
+#map {
+    width: 100%;
+    height: 400px;
+}
+
+#select-location-btn {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+}
+
+#date-container {
+    margin-bottom: 20px;
+}
+
+#weather-info {
+    font-size: 20px;
+}

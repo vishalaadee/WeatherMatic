@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Weather Forecast</title>
+    <link rel="stylesheet" type="text/css" href="styles.css">
+</head>
+<body>
+    <div id="weather-container">
+        <h1>Weather Forecast</h1>
+        <div id="input-container">
+            <div class="input-group">
+                <label for="location-input">Location:</label>
+                <input type="text" id="location-input" placeholder="Enter Location">
+                <button id="location-record-btn" class="record-btn">Record</button>
+                <button id="location-pause-btn" class="pause-btn" disabled>Pause</button>
+                <button id="location-stop-btn" class="stop-btn" disabled>Stop</button>
+            </div>
+            <div class="input-group">
+                <label for="from-date-input">From:</label>
+                <input type="date" id="from-date-input">
+                <button id="from-date-record-btn" class="record-btn">Record</button>
+                <button id="from-date-pause-btn" class="pause-btn" disabled>Pause</button>
+                <button id="from-date-stop-btn" class="stop-btn" disabled>Stop</button>
+            </div>
+            <div class="input-group">
+                <label for="to-date-input">To:</label>
+                <input type="date" id="to-date-input">
+                <button id="to-date-record-btn" class="record-btn">Record</button>
+                <button id="to-date-pause-btn" class="pause-btn" disabled>Pause</button>
+                <button id="to-date-stop-btn" class="stop-btn" disabled>Stop</button>
+            </div>
+            <button id="get-forecast-btn">Get Forecast</button>
+        </div>
+        <div id="date-container"></div>
+        <div id="weather-info"></div>
+    </div>
+    <script src="script.js"></script>
+    <script>
+        // Speech Recognition
+        const SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition;
+        const recognition = new SpeechRecognition();
+
+        // Text-to-Speech
+        const synth = window.speechSynthesis;
+
+        // Function to control speech recognition buttons
+        function controlSpeechRecognitionButtons(inputId, recordBtnId, pauseBtnId, stopBtnId) {
+            const inputField = document.getElementById(inputId);
+            const recordBtn = document.getElementById(recordBtnId);
+            const pauseBtn = document.getElementById(pauseBtnId);
+            const stopBtn = document.getElementById(stopBtnId);
+
+            if (recordBtn && pauseBtn && stopBtn) {
+                recordBtn.addEventListener("click", function() {
+                    recognition.start();
+                    inputField.value = "";
+                    inputField.disabled = true;
+                    recordBtn.disabled = true;
+                    pauseBtn.disabled = false;
+                    stopBtn.disabled = false;
+                });
+
+                pauseBtn.addEventListener("click", function() {
+                    recognition.stop();
+                    pauseBtn.disabled = true;
+                });
+
+                stopBtn.addEventListener("click", function() {
+                    recognition.stop();
+                    inputField.disabled = false;
+                    recordBtn.disabled = false;
+                    pauseBtn.disabled = true;
+                    stopBtn.disabled = true;
+                });
+            }
+        }
+
+        function getWeatherForecast() {
+            const city = document.getElementById("location-input").value;
+            const startDate = document.getElementById("from-date-input").value;
+            const endDate = document.getElementById("to-date-input").value;
+
+            const requestData = {
+                city: city,
+                start_date: startDate,
+                end_date: endDate
+            };
+
+            // Call API and display weather forecast
+            // ...
+        }
+
+        document.getElementById("get-forecast-btn").addEventListener("click", function() {
+            getWeatherForecast();
+        });
+
+        // Control speech recognition buttons for location input
+        controlSpeechRecognitionButtons("location-input", "location-record-btn", "location-pause-btn", "location-stop-btn");
+
+        // Control speech recognition buttons for from date input
+        controlSpeechRecognitionButtons("from-date-input", "from-date-record-btn", "from-date-pause-btn", "from-date-stop-btn");
+
+        // Control speech recognition buttons for to date input
+        controlSpeechRecognitionButtons("to-date-input", "to-date-record-btn", "to-date-pause-btn", "to-date-stop-btn");
+    </script>
+</body>
+</html>

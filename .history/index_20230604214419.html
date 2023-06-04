@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Weather Matic</title>
+    <link rel="stylesheet" type="text/css" href="styles.css">
+</head>
+<body>
+    <div id="weather-container">
+        <h1>Weather Forecast</h1>
+        <div id="input-container">
+            <label for="location-input">Location:</label>
+            <input type="text" id="location-input" placeholder="Enter Location">
+            <br>
+            <label for="from-date-input">From:</label>
+            <input type="date" id="from-date-input">
+            <br>
+            <label for="to-date-input">To:</label>
+            <input type="date" id="to-date-input">
+            <br>
+            <button id="get-forecast-btn">Get Forecast</button>
+        </div>
+        <div id="date-container"></div>
+        <div id="weather-info"></div>
+        <button id="stop-voice-btn">Stop Voice</button>
+    </div>
+    <script src="script.js"></script>
+    <script>
+        // Speech Recognition
+        const SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition;
+        const recognition = new SpeechRecognition();
+
+        // Text-to-Speech
+        const synth = window.speechSynthesis;
+
+        // Function to convert decimal numbers to integers
+        function convertToInteger(number) {
+            return Math.round(number);
+        }
+
+        function getWeatherForecast() {
+            const city = document.getElementById("location-input").value;
+            const startDate = document.getElementById("from-date-input").value;
+            const endDate = document.getElementById("to-date-input").value;
+
+            const requestData = {
+                city: city,
+                start_date: startDate,
+                end_date: endDate
+            };
+
+            fetch('http://127.0.0.1:8000/weather_forecast', {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json"
+                },
+                body: JSON.stringify(requestData)
+            })
+            .then(response => response.json())
+            .then(data => {
+                const dateContainer = document.getElementById("date-container");
+                dateContainer.innerHTML = "";
+
+                data.forEach(weather => {
+                    const dateInfo = document.createElement("div");
+                    dateInfo.classList.add("date-info");
+
+                    const date = document.createElement("div");
+                    date.textContent = weather.date;
+                    date.classList.add("date");
+                    dateInfo.appendChild(date);
+
+                    const weatherInfo = document.createElement("div");
+                    weatherInfo.classList.add("weather-info");
+                    weatherInfo.innerHTML = `Temperature: ${convertToInteger(weather.temperature)}°C<br>
+                                            Humidity: ${convertToInteger(weather.humidity)}%<br>
+                                            Wind Speed: ${convertToInteger(weather.wind_speed)} m/s`;
+
+                    dateInfo.appendChild(weatherInfo);
+                    dateContainer.appendChild(dateInfo);
+                });
+
+                // Speak weather updates
+                const utterance = new SpeechSynthesisUtterance("Here is the weather forecast.");
+                synth.speak(utterance);
+                data.forEach(weather => {
+                    const speechText = `On ${weather.date}, the temperature is ${convertToInteger(weather.temperature)} degrees Celsius, 
+                                        humidity is ${convertToInteger(weather.humidity)} percent, and wind speed is ${convertToInteger(weather.wind_speed)} meters per second.`;
+                    const utterance = new SpeechSynthesisUtterance(speechText);
+                    synth.speak(utterance);
+                });
+            })
+            .catch(error => {
+                console.error(error);
+            });
+        }
+
+        document.getElementById("get-forecast-btn").addEventListener("click", function() {
+            getWeatherForecast();
+        });
+
+        document.getElementById("stop-voice-btn").addEventListener("click", function() {
+            synth.cancel();
+        });
+
+        // Voice search
+        const voiceSearchBtn = document.getElementById("voice-search-btn");
+        if (voiceSearchBtn) {
+            voiceSearchBtn.addEventListener("click", function() {
+                recognition.start();
+            });
+        }
+
+        if (recognition) {
+            recognition.addEventListener("result", function(event) {
+                const voiceInput = event.results[0][0].transcript;
+                document.getElementById("location-input").value = voiceInput;
+            });
+
+            recognition.addEventListener("end", function() {
+                recognition.stop();
+            });
+        }
+    </script>
+</body>
+</html>

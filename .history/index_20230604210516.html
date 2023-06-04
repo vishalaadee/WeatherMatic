@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Weather Forecast</title>
+    <link rel="stylesheet" type="text/css" href="styles.css">
+</head>
+<body>
+    <div id="weather-container">
+        <h1>Weather Forecast</h1>
+        <div id="input-container">
+            <label for="location-input">Location:</label>
+            <input type="text" id="location-input" placeholder="Enter Location">
+            <br>
+            <label for="from-date-input">From:</label>
+            <input type="date" id="from-date-input">
+            <br>
+            <label for="to-date-input">To:</label>
+            <input type="date" id="to-date-input">
+            <br>
+            <button id="get-forecast-btn">Get Forecast</button>
+        </div>
+        <div id="forecast-container">
+            <div id="date-container"></div>
+            <div id="weather-info"></div>
+        </div>
+    </div>
+    <script src="script.js"></script>
+</body>
+</html>

@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Weather Forecast</title>
+    <link rel="stylesheet" type="text/css" href="styles.css">
+</head>
+<body>
+    <div id="weather-container">
+        <h1>Weather Forecast</h1>
+        <div id="map-container">
+            <div id="map"></div>
+            <button id="select-location-btn">Select Location</button>
+        </div>
+        <div id="date-container">
+            <label for="start-date-input">Start Date:</label>
+            <input type="date" id="start-date-input">
+
+            <label for="end-date-input">End Date:</label>
+            <input type="date" id="end-date-input">
+
+            <button id="submit-btn">Submit</button>
+        </div>
+        <div id="weather-info"></div>
+    </div>
+    <script src="script.js"></script>
+    <script src="https://maps.googleapis.com/maps/api/js?key=YOUR_API_KEY&libraries=places"></script>
+</body>
+</html>

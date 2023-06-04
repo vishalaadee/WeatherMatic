@@ -1,0 +1,91 @@
+body {
+    background-image: url("background_image.jpg");
+    background-size: cover;
+    margin: 0;
+    padding: 0;
+}
+
+#weather-container {
+    text-align: center;
+    color: #fff;
+    font-family: Arial, sans-serif;
+    padding: 20px;
+}
+
+h1 {
+    font-size: 36px;
+    color: #fff;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+    margin-bottom: 20px;
+    letter-spacing: 2px;
+}
+
+#map-container {
+    margin-bottom: 20px;
+}
+
+#map {
+    width: 400px;
+    height: 300px;
+    margin-bottom: 10px;
+}
+
+#select-location-btn {
+    padding: 10px 20px;
+    font-size: 16px;
+    font-weight: bold;
+    border: none;
+    background-color: #4287f5;
+    color: #fff;
+    cursor: pointer;
+}
+
+#date-container {
+    margin-bottom: 20px;
+}
+
+label {
+    font-size: 18px;
+    margin-right: 10px;
+}
+
+input[type="date"] {
+    padding: 8px;
+    font-size: 16px;
+}
+
+#get-forecast-btn {
+    padding: 10px 20px;
+    font-size: 18px;
+    font-weight: bold;
+    border: none;
+    background-color: #f54242;
+    color: #fff;
+    cursor: pointer;
+}
+
+#forecast-container {
+    max-height: 300px;
+    overflow-y: auto;
+    background-color: rgba(0, 0, 0, 0.8);
+    padding: 20px;
+    margin-bottom: 20px;
+}
+
+.forecast-box {
+    padding: 10px;
+    margin-bottom: 10px;
+    background-color: rgba(255, 255, 255, 0.2);
+    border-radius: 5px;
+}
+
+.forecast-date {
+    font-size: 20px;
+    font-weight: bold;
+    margin-bottom: 5px;
+}
+
+.forecast-info {
+    font-size: 16px;
+    color: #fff;
+}
